@@ -11,6 +11,9 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
@@ -27,7 +30,9 @@ public class Fenster extends JFrame {
 	private ButtonGroup bg;
 	private JComboBox<String> jcomboBox;
 	private String[] eintraege = { "Rot", "Gelb" };
-
+	private JMenuItem jmiRot, jmiGelb, jmiBlau, jmiBeenden;
+	
+	
 	public Fenster() {
 		this.setTitle("Farbwahl");
 		this.setSize(300, 300);
@@ -35,6 +40,7 @@ public class Fenster extends JFrame {
 		this.setLocationRelativeTo(null);
 
 		initComponents();
+		createMenu();
 		initEvents();
 		this.setVisible(true);
 	}
@@ -80,6 +86,28 @@ public class Fenster extends JFrame {
 		c.add(jpcenter, BorderLayout.CENTER);
 		c.add(jpsouth, BorderLayout.SOUTH);
 
+	}
+	
+	private void createMenu(){
+		
+		jmiBeenden = new JMenuItem("Beenden");
+		jmiRot = new JMenuItem("Rot");
+		jmiBlau = new JMenuItem("Blau");
+		jmiGelb = new JMenuItem("Gelb");
+		
+		JMenu jmenuDatei = new JMenu("Datei");
+		jmenuDatei.add(jmiBeenden);
+		
+		JMenu jmenuBearbeiten = new JMenu("Bearbeiten");
+		jmenuBearbeiten.add(jmiRot);
+		jmenuBearbeiten.add(jmiBlau);
+		jmenuBearbeiten.add(jmiGelb);
+		
+		JMenuBar jmenubar = new JMenuBar();
+		jmenubar.add(jmenuDatei);
+		jmenubar.add(jmenuBearbeiten);
+		
+		this.setJMenuBar(jmenubar);
 	}
 
 	private void initEvents() {
